@@ -18,10 +18,10 @@ body {
   padding-bottom: 12px;
 }
 
-.container {
-  /* display: flex;
+/* .container {
+  display: flex;
   flex-wrap: wrap;
-  justify-content: center; */
+  justify-content: center;
   margin: auto;
   width: 45%;
   height: 280px;
@@ -30,12 +30,12 @@ body {
   grid-template-rows: repeat(16, 1fr);
   gap: none;
   justify-content: center;
-}
+} */
 
 .box {
   border: 1px solid black;
   /* display: flex; */
-  height: 45px;
+  /* height: 45px; */
   /* width: 45px; */
   transition: background-color 0.7s;
 }
