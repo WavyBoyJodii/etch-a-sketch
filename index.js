@@ -7,3 +7,8 @@ for (let i=0; i<256; i++) {
 }
 
 page.innerHTML = gridbox;
+
+
+function changeColor() {
+    
+}
