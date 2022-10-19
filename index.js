@@ -1,5 +1,6 @@
 const page = document.querySelector(".container");
 const resetButton = document.querySelector(".reset");
+const results = document.querySelector('.dimensions');
 
 // let gridbox = "";
 
@@ -11,10 +12,15 @@ page.style.margin = 'auto';
 page.style.width = '500px';
 page.style.height = '500px';
 page.style.justifyContent = 'center';
+page.style.border = '1px solid black';
+
+
 
 
 function initGrid(){
-    for (let i=0; i<256; i++) {
+    let initialValue = 256;
+    let dimension = Math.sqrt(initialValue);
+    for (let i=0; i<initialValue; i++) {
         // gridbox+= '<div class="box"></div>';
         const box = document.createElement('div');
         box.classList.add('box');
@@ -23,7 +29,7 @@ function initGrid(){
             e.target.style.transition = '0.5s';
         });
         page.appendChild(box);
-    } 
+    } results.textContent = `${dimension} by ${dimension} cube`;
 }
 
 function makeNewPad() {
@@ -71,26 +77,11 @@ function createNewGrid() {
         });
         page.appendChild(box);
     }
-    return page.style.gridTemplateColumns = `repeat(${side}, 1fr)`,
+    return results.textContent = `${side} by ${side} cube`,
+    page.style.gridTemplateColumns = `repeat(${side}, 1fr)`,
     page.style.gridTemplateRows = `repeat(${side}, 1fr)`;
 }
 
-// function changeBackgroundColor() {
-//     const boxes = document.querySelectorAll('.box');
-//     boxes.forEach((box) => {
-//         const boxed = box;
-//         boxed.style.backgroundColor = 'red';
-//         boxed.style.transition = '1s';
-
-//     })
-//     page.style.backgroundColor = 'red';
-//     page.style.transition = '1s';
-// }
-
-// function makeInteractive() {
-
-// }
-// box.addEventListener('mouseover', () => changeBackgroundColor());
 
 resetButton.addEventListener('click', () => makeNewPad());
 

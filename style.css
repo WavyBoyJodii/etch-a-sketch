@@ -32,15 +32,23 @@ body {
   justify-content: center;
 } */
 
-.box {
-  border: 1px solid black;
-  /* display: flex; */
-  /* height: 45px; */
-  /* width: 45px; */
-  /* transition: background-color 0.7s; */
+.dimensions {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding: 25px;
+  font-size: larger;
 }
 
-/* .box:hover {
+/* .box {
+  border: 1px solid black;
+  display: flex;
+  height: 45px;
+  width: 45px;
+  transition: background-color 0.7s;
+}
+
+.box:hover {
   background-color: crimson;
 }
 
