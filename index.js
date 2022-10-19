@@ -1,34 +1,33 @@
 const page = document.querySelector(".container");
 const resetButton = document.querySelector(".reset");
-const box = document.querySelector('.box');
 
-
-let gridbox = "";
-
-for (let i=0; i<256; i++) {
-    gridbox+= '<div class="box"></div>';
-}
+// let gridbox = "";
 
 page.style.display = 'grid';
-page.style.gridTemplateColumns = 'repeat(16, minmax(30px,1fr))';
-page.style.gridTemplateRows = 'repeat(16, minmax(30px,1fr))';
+page.style.gridTemplateColumns = 'repeat(16, 1fr)';
+page.style.gridTemplateRows = 'repeat(16, 1fr)';
 page.style.gap = 'none';
 page.style.margin = 'auto';
 page.style.width = '500px';
 page.style.height = '500px';
 page.style.justifyContent = 'center';
 
-page.innerHTML = gridbox;
 
-
-// function changeColor() {
-    
-// }
-
-resetButton.addEventListener('click', () => makeNewPad());
+function initGrid(){
+    for (let i=0; i<256; i++) {
+        // gridbox+= '<div class="box"></div>';
+        const box = document.createElement('div');
+        box.classList.add('box');
+        box.addEventListener('mouseover', (e) => {
+            e.target.style.backgroundColor = 'red';
+            e.target.style.transition = '0.5s';
+        });
+        page.appendChild(box);
+    } 
+}
 
 function makeNewPad() {
-    removeCurrentGrid();
+    removeCurrentGrid(page);
     createNewGrid();
 }
 
@@ -44,27 +43,55 @@ function getGridSize() {
         } else {
             alert("value must be 100 or less");
             return getGridSize();
-            // prompt("Number of squares per side of new pad?", "eg. 32");
         }
     } else {
         alert("value must be a whole number anywhere from 1 to 100");
         return getGridSize();
-        // prompt("Number of squares per side of new pad?", "eg. 32");
     };
 }
 
-function removeCurrentGrid() {
-    gridbox = "";
-    return page.innerHTML = gridbox;
+function removeCurrentGrid(parent) {
+    // gridbox = "";
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild)
+    }
+    // return page.innerHTML = gridbox;
 }
 
 function createNewGrid() {
     let side = getGridSize();
     let value = side * side;
     for (let i=0; i<value; i++) {
-        gridbox+= '<div class="box"></div>';
+        // gridbox+= '<div class="box"></div>';
+        const box = document.createElement('div');
+        box.classList.add('box');
+        box.addEventListener('mouseover', (e) => {
+            e.target.style.backgroundColor = 'red';
+            e.target.style.transition = '0.5s';
+        });
+        page.appendChild(box);
     }
-    return page.innerHTML = gridbox,
-    page.style.gridTemplateColumns = `repeat(${side}, minmax(10px, 1fr))`,
-    page.style.gridTemplateRows = `repeat(${side}, minmax(30px, 1fr))`;
+    return page.style.gridTemplateColumns = `repeat(${side}, 1fr)`,
+    page.style.gridTemplateRows = `repeat(${side}, 1fr)`;
 }
+
+// function changeBackgroundColor() {
+//     const boxes = document.querySelectorAll('.box');
+//     boxes.forEach((box) => {
+//         const boxed = box;
+//         boxed.style.backgroundColor = 'red';
+//         boxed.style.transition = '1s';
+
+//     })
+//     page.style.backgroundColor = 'red';
+//     page.style.transition = '1s';
+// }
+
+// function makeInteractive() {
+
+// }
+// box.addEventListener('mouseover', () => changeBackgroundColor());
+
+resetButton.addEventListener('click', () => makeNewPad());
+
+window.onload = () => initGrid();
